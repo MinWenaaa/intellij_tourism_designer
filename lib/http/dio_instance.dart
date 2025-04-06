@@ -14,7 +14,8 @@ class Dio_database{
   final Dio _dio = Dio(
       BaseOptions(
           method: "GET",
-          baseUrl: "http://121.41.170.185:5000/",
+          //baseUrl: "http://121.41.170.185:5000/",
+          baseUrl: "http://192.168.3.22:5000/",
           connectTimeout: defaultTime,
           receiveTimeout: Duration(seconds: 60),
           sendTimeout: defaultTime,

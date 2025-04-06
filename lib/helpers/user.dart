@@ -10,7 +10,7 @@ class User {
 
   User.fromJson(dynamic json) {
     uid = json['uid'];
-    unickname = json['unickname'];
+    unickname = json['username'];
     upic = json['upic'];
   }
   num? uid;

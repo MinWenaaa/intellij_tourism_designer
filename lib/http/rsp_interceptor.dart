@@ -16,6 +16,7 @@ class BaseModel<T>{
 class ResponseInterceptor extends Interceptor{
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    //if(response.statusCode == 200){
     if(response.statusCode == 200){
       try{
         var rsp = BaseModel.fromJson(response.data);

@@ -22,6 +22,7 @@ class GlobalModel with ChangeNotifier{
   );
 
   Future<bool> Login({required String name, required String password}) async {
+
     final result = await Api.instance.UserLogin(name: name, password: password);
     if (result == null) {
       return false;
