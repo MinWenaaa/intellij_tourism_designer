@@ -3,7 +3,6 @@ import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:intellij_tourism_designer/constants/theme.dart';
 import 'package:intellij_tourism_designer/helpers/comment_list.dart';
 import 'package:intellij_tourism_designer/helpers/poi_detail_data.dart';
-import 'package:intellij_tourism_designer/models/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/constants.dart';
@@ -21,7 +20,7 @@ class Poidetailpage extends StatefulWidget {
 class _PoidetailpageState extends State<Poidetailpage> {
 
   late Future<PoiDetail> poi;
-  CommentModel commentModel = CommentModel();
+  //CommentModel commentModel = CommentModel();
 
   List<String> text = ["CALL", "INFO", "ROUTE"];
 
@@ -34,7 +33,7 @@ class _PoidetailpageState extends State<Poidetailpage> {
   void initState() {
     super.initState();
     poi = getPoi();
-    commentModel.getComment(id: widget.id);
+    //commentModel.getComment(id: widget.id);
   }
 
   @override
@@ -54,7 +53,7 @@ class _PoidetailpageState extends State<Poidetailpage> {
                 _Text(snapshot.data),
                 const SizedBox(height: 30,),
                 Divider(),
-                _CommentList()
+                //_CommentList()
               ],
             ),
           ): const Center(child: CircularProgressIndicator(),);
@@ -116,7 +115,7 @@ class _PoidetailpageState extends State<Poidetailpage> {
         children: List.generate(3, (index)=>
             Column(
               children: [
-                Image.network(ConstantString.Icon_decoration[index], height: 48, width: 48,),
+                Image.network(ConstantString.iconDecorationUrl[index], height: 48, width: 48,),
                 Text(text[index], style: AppText.detail,)
               ],
             )),
@@ -164,6 +163,7 @@ class _PoidetailpageState extends State<Poidetailpage> {
     ));
   }
 
+/*
 
   Widget _CommentList(){
 
@@ -216,5 +216,6 @@ class _PoidetailpageState extends State<Poidetailpage> {
         )
     );
   }
+  */
 
 }

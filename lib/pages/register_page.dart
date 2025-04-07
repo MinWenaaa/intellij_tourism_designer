@@ -41,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 50,),
               primaryInkWell(
                   callback: () async {
-                    bool flag = await vm.Signup(name: _userName, password: _passWord);
+                    bool flag = await vm.userSignup(name: _userName, password: _passWord);
                     if(flag){
                       RouteUtils.pop(context);
                       RouteUtils.pop(context);

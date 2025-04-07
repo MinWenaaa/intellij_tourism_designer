@@ -9,7 +9,7 @@ Marker deepSecondaryMarker(LatLng point){
       width: 48, height: 48,
       point: point,
       alignment: Alignment.topCenter,
-      child: Image.network(ConstantString.poi_icon_url[5], fit: BoxFit.fill,)
+      child: Image.network(ConstantString.poiIconUrl[5], fit: BoxFit.fill,)
   );
 }
 

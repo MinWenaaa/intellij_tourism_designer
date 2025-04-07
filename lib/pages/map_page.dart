@@ -77,8 +77,8 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin{
         print("Map tap: add point $geolocation");},
       initialCenter: const LatLng(30.5,114.4),
       initialZoom: 16.5,
-      maxZoom: MAXZOOM,
-      minZoom: MINZOOM,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
       cameraConstraint: CameraConstraint.contain(
         bounds: LatLngBounds(
           const LatLng(-90, -180),

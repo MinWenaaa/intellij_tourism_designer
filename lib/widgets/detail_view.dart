@@ -353,7 +353,7 @@ class _WeatherCardState extends State<WeatherCard> {
               ),
             ],
           ),
-          Image.network(ConstantString.weather_icon[randomNumber],
+          Image.network(ConstantString.weatherIconUrl[randomNumber],
               fit: BoxFit.contain, width: 140, height: 140,),
         ],
       ),

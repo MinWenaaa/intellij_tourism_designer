@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:intellij_tourism_designer/constants/Markers.dart';
 import 'package:intellij_tourism_designer/constants/constants.dart';
@@ -13,26 +15,36 @@ import '../helpers/Iti_data.dart';
 
 class GlobalModel with ChangeNotifier{
 
+  /*
+  存储用户登录信息
+  */
 
+  late User user;
 
-  User user = User(
-    uid: 0,
-    unickname: "未登录",
-    upic: "https://gd-hbimg.huaban.com/0012232547458c7ce4599d0896c6ad5fc2cd8e4f368b7-bK8xeo_fw480webp"
-  );
+  Future<bool> userLogin({required String name, required String password}) async {
+    switch (currentEnvironment) {
 
-  Future<bool> Login({required String name, required String password}) async {
+      case Environment.development:
+        final String jsonString = await rootBundle.loadString(TestData.sampleUser);
+        final Map<String, dynamic> jsonData = json.decode(jsonString);
+        user = User.fromJson(jsonData);
+        return true;
 
-    final result = await Api.instance.UserLogin(name: name, password: password);
-    if (result == null) {
-      return false;
-    } else {
-      user = result;
-      return true;
+      case Environment.staging:
+        final result = await Api.instance.UserLogin(name: name, password: password);
+        if (result == null) {
+          return false;
+        } else {
+          user = result;
+          return true;
+        }
+
+      case Environment.production:
+        return false;
     }
   }
 
-  Future<bool> Signup({required String name, required String password}) async {
+  Future<bool> userSignup({required String name, required String password}) async {
     final result = await Api.instance.Signup(name: name, password: password);
     if (result == null) {
       return false;
@@ -105,7 +117,7 @@ class GlobalModel with ChangeNotifier{
           width: 48, height: 48,
           point: LatLng(data.latitude ?? 0, data.longitude ?? 0),
           child: GestureDetector(
-            child: Image.network(ConstantString.poi_icon_url[index], width: 48, height: 48,),
+            child: Image.network(ConstantString.poiIconUrl[index], width: 48, height: 48,),
             onTap: () => markerCallBack(data.pid??0)
           )
         ))
@@ -132,7 +144,7 @@ class GlobalModel with ChangeNotifier{
           width: 48, height: 48,
           point: LatLng(data.latitude??0, data.longitude??0),
           child: GestureDetector(
-            child: Image.network(ConstantString.poi_icon_url[i], width: 48, height: 48,),
+            child: Image.network(ConstantString.poiIconUrl[i], width: 48, height: 48,),
             onTap: () => markerCallBack(data.pid??0)
           )
         )));
@@ -175,7 +187,7 @@ class GlobalModel with ChangeNotifier{
       planMarker.add(Marker(
         point: LatLng(iti.y??31, iti.x??114),
         child: GestureDetector(
-          child: Image.network(ConstantString.poi_icon_url[4], width: 36, height: 36,),
+          child: Image.network(ConstantString.poiIconUrl[4], width: 36, height: 36,),
           onTap: (){
             changeDetail(true);
             currentPOI = iti.pid!.toInt();

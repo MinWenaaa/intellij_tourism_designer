@@ -1,12 +1,12 @@
+import 'dart:ui';
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:intellij_tourism_designer/constants/constants.dart';
 import 'package:intellij_tourism_designer/constants/theme.dart';
-import 'package:intellij_tourism_designer/pages/register_page.dart';
-import 'package:intellij_tourism_designer/route_utils.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import '../models/global_model.dart';
 import 'desktop_page.dart';
-import 'dart:ui';
 
 //登录界面
 
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 18.0, sigmaY: 18.0),
                 child: Container(
-                  decoration: BoxDecoration(color: const Color(0x33fafffa),
+                  decoration: const BoxDecoration(color: const Color(0x33fafffa),
                       border: Border(left: BorderSide(color: Color(0x77ffffff), width: 1.0))
                   ),
                   alignment: Alignment.center,
@@ -49,20 +49,17 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image(image: AssetImage('assets/imgs/logo.png')),
-                        SizedBox(height: 30),
+                        const Image(image: AssetImage('assets/imgs/logo.png')),
+                        const SizedBox(height: 30),
                         _commonInput(controller: _usernameController,  lableText: "账号"),
                         _commonInput(controller: _passwordController,  lableText: "密码"),
                         const SizedBox(height: 30),
-                        OutlinedButton(onPressed: () async {
-                          bool flag = await Provider.of<GlobalModel>(context,listen: false).Login(name: _usernameController.text, password: _passwordController.text);
-                          Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DeskTopPage()));
-                          }, child: Container(
-                          color: Colors.teal,
-                          child: Text("登录")
-                        ),
-
+                        OutlinedButton(
+                          onPressed: () => userLogin(),  
+                          child: Container(
+                            color: Colors.teal,
+                            child: const Text("登录")
+                          ),
                         ),
 /*                        _Button1( content: "登录",
                           callBack: () {
@@ -84,6 +81,19 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<void> userLogin() async {
+    bool flag = await Provider.of<GlobalModel>(context,listen: false).userLogin(
+      name: _usernameController.text, password: _passwordController.text);
+    if(!mounted) return;
+    log("login flag = $flag", name: "MESSAGE");
+    if (flag) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DeskTopPage()),
+      );
+    }
   }
 
   Future<void> SignUp() async {

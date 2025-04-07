@@ -34,7 +34,7 @@ class PlanData {
     data['name'] = name;
     data['id'] = id;
     data['uid'] = uid;
-    print(data);
+    //print(data);
     return data;
   }
 
@@ -59,7 +59,7 @@ class PlanData {
     final PlanData planData  = PlanData(itidata: []);
     for(int i =0; i<num; i++){
       planData.itidata?.add([]);
-      print("itidata add [], now ${planData.itidata}");
+      //print("itidata add [], now ${planData.itidata}");
     }
     planData.pic = "https://gd-hbimg.huaban.com/feeb8703425ac44d7260017be9b67e08483199c06699-i8Tdqo_fw1200webp";
     planData.uid = uid;

@@ -1,7 +1,20 @@
 import 'package:intl/intl.dart';
 
-const double MINZOOM = 5.0;
-const double MAXZOOM = 18.0;
+// 定义运行环境
+enum Environment {
+  development, staging, production
+}
+const Environment currentEnvironment = Environment.development;
+
+// 本地测试数据路径 
+class TestData {
+  TestData._();
+
+  static const String sampleUser = "assets/json/test_data/user.json";
+}
+
+const double minZoom = 5.0;
+const double maxZoom = 18.0;
 
 class ConstantString{
   ConstantString._();
@@ -15,7 +28,7 @@ class ConstantString{
     attraction, dining, hotel, camera
   ];
 
-  static const List<String> poi_layer = [
+  static const List<String> poiLayersName = [
     "wuhan_attraction_poi",
     "wuhan_restaurant_poi",
     "wuhan_hotel_poi",
@@ -27,7 +40,7 @@ class ConstantString{
   static List<String> featureLayer = ['History_Heatmap', 'Nature_Heatmap', 'Scenery_Heatmap', 'Recreation_Heatmap', 'Religion_Heatmap', 'Scenery_Heatmap'];
 
 
-  static const List<String> poi_icon_url = [
+  static const List<String> poiIconUrl = [
     "https://gd-hbimg.huaban.com/ca86b82532f91c2e68a8379a7938bd80117561e31f33-u4F76m_fw1200webp",
     "https://gd-hbimg.huaban.com/4a9eef2cf5a8b205bd2bea27cd84dcfc94d5462e20ae-E1Hlcp_fw1200webp",
     "https://gd-hbimg.huaban.com/8b01201be4b9085ab7e57dd60834ab7186c75ab01da4-J3cQpJ_fw1200webp",
@@ -36,7 +49,7 @@ class ConstantString{
     "https://gd-hbimg.huaban.com/2f6bcc6468b90b81bd252a48e3b881a560077a581a82-K5UJxF_fw1200webp"
   ];
 
-  static const List<String> weather_icon = [
+  static const List<String> weatherIconUrl = [
     "https://gd-hbimg.huaban.com/e9e0bba4f572463c0cebad18c7dddf0c1abbe4c4167b0-KIgEe9_fw1200webp",
     "https://gd-hbimg.huaban.com/661d1503fa127157551a70e36a126269139a800d9b815-x29MMk_fw1200webp",
     "https://gd-hbimg.huaban.com/f23a9683e66012dd6277c48338d022a65f31e584102f9-tJZhhg_fw1200webp",
@@ -56,7 +69,7 @@ class ConstantString{
     'https://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}',
     'https://wayback.maptiles.arcgis.com/arcgis/rest/services/world_imagery/wmts/1.0.0/default028mm/mapserver/tile/45441/{z}/{y}/{x}'];
 
-  static String c657_wms = "http://182.92.251.24:8080/geoserver/Esri_c657/wms?";
+  static String c657WMSUrl = "http://182.92.251.24:8080/geoserver/Esri_c657/wms?";
 
   static const Map<String, List<String>> poiHeadIcon ={
     attraction: [
@@ -86,7 +99,7 @@ class ConstantString{
   static const String user = "https://gd-hbimg.huaban.com/0012232547458c7ce4599d0896c6ad5fc2cd8e4f368b7-bK8xeo_fw480webp";
   static const String blank = "https://gd-hbimg.huaban.com/06d08b2d6d94f745b5be990970cf4dba675d256a19da-XjGKTM_fw1200webp";
 
-  static const List<String> Icon_decoration = [
+  static const List<String> iconDecorationUrl = [
     "https://gd-hbimg.huaban.com/b103762e60fcfefcfc95eda005b25a98f551d8921849-WVffFG_fw1200webp",
     "https://gd-hbimg.huaban.com/febee266b7307d6f82879085a1afc7c638843fe8fd9-mCgo9l_fw1200webp",
     "https://gd-hbimg.huaban.com/3a75247eb3d4691af94767a456368750241a2fe1169a-bxFoKQ_fw1200webp",
@@ -126,7 +139,7 @@ class ConstantString{
   ];
 }
 
-const Duration defaultTime = const Duration(seconds: 10);
+const Duration defaultTime = Duration(seconds: 10);
 
 DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
 

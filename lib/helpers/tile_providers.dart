@@ -24,7 +24,7 @@ TileLayer baseTileLayer(int index){
 TileLayer WMS_ours({required String layerName}) {
   return TileLayer(
     wmsOptions: WMSTileLayerOptions(
-      baseUrl: ConstantString.c657_wms,
+      baseUrl: ConstantString.c657WMSUrl,
       layers: [layerName],
     ),
     tileProvider: NetworkTileProvider(),

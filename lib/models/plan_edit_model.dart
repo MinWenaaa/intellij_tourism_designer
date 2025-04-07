@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:get/get.dart';
 import 'package:intellij_tourism_designer/helpers/Iti_data.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:provider/provider.dart';
 import '../constants/Markers.dart';
 import '../constants/constants.dart';
 import '../http/Api.dart';
-import 'global_model.dart';
 
 class PlanEditModel with ChangeNotifier{
 
@@ -115,7 +112,7 @@ class PlanEditModel with ChangeNotifier{
     planMarker.add(Marker( width: 48, height: 48,
       point: LatLng(itiData.y ?? 31, itiData.x ?? 114),
       child: Image.network(
-        ConstantString.poi_icon_url[4], width: 48, height: 48,
+        ConstantString.poiIconUrl[4], width: 48, height: 48,
       ),)
     );
     points = [];
@@ -159,7 +156,7 @@ class PlanEditModel with ChangeNotifier{
           planMarker.add(Marker( width: 48, height: 48,
             point: LatLng(iti.y ?? 31, iti.x ?? 114),
             child: Image.network(
-              ConstantString.poi_icon_url[4], width: 48, height: 48,
+              ConstantString.poiIconUrl[4], width: 48, height: 48,
             ),
           )));
     });

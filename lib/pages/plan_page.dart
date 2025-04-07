@@ -202,8 +202,8 @@ class _PlanPageState extends State<PlanPage> with TickerProviderStateMixin{
     return MapOptions(
       initialCenter: const LatLng(30.5,114.4),
       initialZoom: 16.5,
-      maxZoom: MAXZOOM,
-      minZoom: MINZOOM,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
       cameraConstraint: CameraConstraint.contain(
         bounds: LatLngBounds(
           const LatLng(-90, -180),

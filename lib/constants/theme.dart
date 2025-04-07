@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 /*
 * 制作主题颜色
@@ -77,7 +75,7 @@ Widget transpDeepSecGesture({
       width: width, height: height, alignment: Alignment.center,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.deepSecondary, width: 1),
-        borderRadius: BorderRadius.all(Radius.circular(26))
+        borderRadius: const BorderRadius.all(Radius.circular(26))
       ),
       child: Text(text, style: AppText.secodaryHead),
     ),
@@ -101,7 +99,7 @@ class AppSize{
 class AppColor {
   AppColor._();
 
-  static const Color PrimaryColor = Color(0xddfaffee);
+  static const Color primaryColor = Color(0xddfaffee);
   static const Color deepSecondary = Color(0xff399445);
   static const Color secondary = Color(0xffbaeeaa);
 }

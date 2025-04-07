@@ -167,7 +167,7 @@ class Api {
       path: "geoserver/Esri_c657/wfs",
       queryParameters: {
         "request": "GetFeature",
-        "typename": ConstantString.poi_layer[type],
+        "typename": ConstantString.poiLayersName[type],
         "outputFormat": "json",
         "bbox": "${min_x},${min_y},${max_x},${max_y},EPSG:4326",
         "count": 200,

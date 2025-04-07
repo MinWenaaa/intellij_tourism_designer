@@ -123,8 +123,8 @@ class _PersonalPageState extends State<PersonalPage> with TickerProviderStateMix
     MapOptions options = MapOptions(
       initialCenter: LatLng(30.5,114.3),
       initialZoom: 16.5,
-      maxZoom: MAXZOOM,
-      minZoom: MINZOOM,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
       cameraConstraint: CameraConstraint.contain(
         bounds: LatLngBounds(
           const LatLng(-90, -180),

@@ -12,13 +12,14 @@ import '../models/plan_edit_model.dart';
 
 
 class DeskTopPage extends StatefulWidget {
+  const DeskTopPage({super.key});
+
   @override
-  _DeskTopPageState createState() => _DeskTopPageState();
+  State<DeskTopPage> createState() => _DeskTopPageState();
 }
 
 class _DeskTopPageState extends State<DeskTopPage> {
   int _selectedIndex = 0;
-
   void _onItemTapped(int index) {
     final vm = Provider.of<GlobalModel>(context,listen: false);
     //两张地图同时存在，只有显示的那张会刷新中心点
@@ -29,13 +30,14 @@ class _DeskTopPageState extends State<DeskTopPage> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<GlobalModel>(context,listen: false);
     return Scaffold(
-      appBar: AppBar(title: Text("Intellij_tourism_designer"),),
+      appBar: AppBar(title: const Text("Intellij_tourism_designer"),),
       body: Row(
         children: [
           NavigationRail(
-            destinations: [
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: _onItemTapped,
+            destinations: const [
               NavigationRailDestination(
                 icon: Icon(Icons.supervised_user_circle),
                 label: Text("主页")),
@@ -49,21 +51,21 @@ class _DeskTopPageState extends State<DeskTopPage> {
                   icon: Icon(Icons.add_chart),
                   label: Text("主页"))
             ],
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onItemTapped,
           ),
+          const VerticalDivider(thickness: 1, width:1),
           ChangeNotifierProvider<PlanEditModel>(
             create: (context) => PlanEditModel(),
             child: Expanded(
               child: IndexedStack(
                 index: _selectedIndex,
                 children: [
-                  PersonalPage(callBack: _onItemTapped,),
-                  MapPage(),
-                  PlanPage(),
-                  ChangeNotifierProvider<StateModel>(
-                      create: (context) => StateModel(),
-                      child: CityStatsPage()),
+                  Placeholder(),Placeholder(),Placeholder(),Placeholder(),
+                  // PersonalPage(callBack: _onItemTapped,),
+                  // const MapPage(),
+                  // const PlanPage(),
+                  // ChangeNotifierProvider<StateModel>(
+                  //     create: (context) => StateModel(),
+                  //     child: const CityStatsPage()),
                 ],
               ),
             )

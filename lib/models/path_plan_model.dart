@@ -23,7 +23,7 @@ class PathPlanModel with ChangeNotifier{
     markers.add(deepSecondaryMarker(point));
 
     getRoute();
-    if (this.hasListeners) {
+    if (hasListeners) {
       notifyListeners();
     }
   }
